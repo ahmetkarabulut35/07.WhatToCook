@@ -8,15 +8,18 @@
 import Foundation
 
 struct MainPageViewModel {
-    
-    let service = Service()
-    
-    mutating func getRandomMeal(completion: @escaping(Recipe) -> ()) {
-        let randomMealUrl = URL(string: "https://www.themealdb.com/api/json/v1/1/random.php")
-        let _:Meals? = service.getData(url: randomMealUrl!) { (response) in
-            if let recipe = response?.meals.first {
-                completion(recipe.convertMealToRecipe())
+        
+    func getRandomMeal(completion: @escaping(Recipe?) -> ()) {
+        serviceHelper.getMeals(url: constant.randomRecipeUrl, service: service) { (recipes) in
+            if recipes.count > 0 {
+                completion(recipes.first)
             }
+        }
+    }
+    
+    func getCategories(completion: @escaping([CategoryModel]) -> ())  {
+        serviceHelper.getCategories(service: service) { (categories) in
+            completion(categories)
         }
     }
 }

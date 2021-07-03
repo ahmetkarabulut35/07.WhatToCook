@@ -56,12 +56,14 @@ struct Meal: Codable {
 struct Meals: Codable {
     let meals: [Meal]
     
-    func getRecipes() {
+    func getRecipes() -> [Recipe] {
         var recipes = [Recipe]()
         
         for meal in meals {
             recipes.append(meal.convertMealToRecipe())
         }
+        
+        return recipes
     }
 }
 

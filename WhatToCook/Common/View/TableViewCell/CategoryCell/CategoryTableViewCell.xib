@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="categoryTableViewCell" rowHeight="114" id="KGk-i7-Jjw" customClass="CategoryTableViewCell" customModule="WhatToCook" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="114"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="114"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zc5-qJ-N6L" customClass="ImageWithTextView" customModule="WhatToCook" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="101.5" height="101"/>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2x9-gL-sOf" customClass="ImageWithTextView" customModule="WhatToCook" customModuleProvider="target">
+                        <rect key="frame" x="218.5" y="0.0" width="101.5" height="101"/>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vss-p9-7bY" customClass="ImageWithTextView" customModule="WhatToCook" customModuleProvider="target">
+                        <rect key="frame" x="109.5" y="0.0" width="101" height="101"/>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="vss-p9-7bY" firstAttribute="width" secondItem="2x9-gL-sOf" secondAttribute="width" id="457-iy-aZM"/>
+                    <constraint firstItem="vss-p9-7bY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="8Oa-NA-adB"/>
+                    <constraint firstItem="Zc5-qJ-N6L" firstAttribute="width" secondItem="vss-p9-7bY" secondAttribute="width" id="KnS-pg-mVh"/>
+                    <constraint firstAttribute="bottom" secondItem="2x9-gL-sOf" secondAttribute="bottom" constant="13" id="L2h-VC-gry"/>
+                    <constraint firstAttribute="trailing" secondItem="2x9-gL-sOf" secondAttribute="trailing" id="LYH-dR-cTk"/>
+                    <constraint firstItem="Zc5-qJ-N6L" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="aIF-vM-oxB"/>
+                    <constraint firstItem="vss-p9-7bY" firstAttribute="leading" secondItem="Zc5-qJ-N6L" secondAttribute="trailing" constant="8" id="aiI-Ar-WAz"/>
+                    <constraint firstAttribute="bottom" secondItem="vss-p9-7bY" secondAttribute="bottom" constant="13" id="bHX-8n-4Bv"/>
+                    <constraint firstItem="2x9-gL-sOf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="e2N-J7-JU5"/>
+                    <constraint firstItem="2x9-gL-sOf" firstAttribute="leading" secondItem="vss-p9-7bY" secondAttribute="trailing" constant="8" id="ft5-dN-4ju"/>
+                    <constraint firstItem="Zc5-qJ-N6L" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="hES-SD-439"/>
+                    <constraint firstAttribute="bottom" secondItem="Zc5-qJ-N6L" secondAttribute="bottom" constant="13" id="u7p-eT-Gsb"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="columnCenter" destination="vss-p9-7bY" id="aUS-Me-gjE"/>
+                <outlet property="columnLeft" destination="Zc5-qJ-N6L" id="imS-7v-nj0"/>
+                <outlet property="columnRight" destination="2x9-gL-sOf" id="CaX-Th-g3Y"/>
+            </connections>
+            <point key="canvasLocation" x="140.57971014492756" y="155.35714285714286"/>
+        </tableViewCell>
+    </objects>
+</document>

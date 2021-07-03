@@ -15,13 +15,56 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IHS-Ou-ign">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="7JZ-mj-gY8"/>
+                                </items>
+                            </navigationBar>
+                            <searchBar contentMode="redraw" placeholder="Search recipe..." translatesAutoresizingMaskIntoConstraints="NO" id="lxk-NS-qb9">
+                                <rect key="frame" x="16" y="60" width="382" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lqY-HW-4Wf" customClass="ImageWithTextView" customModule="WhatToCook" customModuleProvider="target">
+                                <rect key="frame" x="16" y="132" width="382" height="200"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="vKQ-PA-POi"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="135" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Uzw-B0-KjZ">
+                                <rect key="frame" x="16" y="348" width="382" height="388"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Tl0-h5-ouh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="IHS-Ou-ign" firstAttribute="trailing" secondItem="Tl0-h5-ouh" secondAttribute="trailing" id="4rd-1G-MPd"/>
+                            <constraint firstItem="IHS-Ou-ign" firstAttribute="top" secondItem="Tl0-h5-ouh" secondAttribute="top" id="5hT-nv-tZS"/>
+                            <constraint firstItem="Tl0-h5-ouh" firstAttribute="trailing" secondItem="lxk-NS-qb9" secondAttribute="trailing" constant="16" id="N5h-Jz-DOK"/>
+                            <constraint firstItem="Tl0-h5-ouh" firstAttribute="trailing" secondItem="Uzw-B0-KjZ" secondAttribute="trailing" constant="16" id="OOG-fK-iy6"/>
+                            <constraint firstItem="lxk-NS-qb9" firstAttribute="top" secondItem="IHS-Ou-ign" secondAttribute="bottom" constant="16" id="S3X-IY-ICc"/>
+                            <constraint firstItem="Uzw-B0-KjZ" firstAttribute="leading" secondItem="Tl0-h5-ouh" secondAttribute="leading" constant="16" id="d3C-nq-QSR"/>
+                            <constraint firstItem="lqY-HW-4Wf" firstAttribute="leading" secondItem="Tl0-h5-ouh" secondAttribute="leading" constant="16" id="hn3-mB-1hR"/>
+                            <constraint firstItem="Tl0-h5-ouh" firstAttribute="trailing" secondItem="lqY-HW-4Wf" secondAttribute="trailing" constant="16" id="kFC-aU-sDM"/>
+                            <constraint firstItem="IHS-Ou-ign" firstAttribute="leading" secondItem="Tl0-h5-ouh" secondAttribute="leading" id="miO-Dv-hfs"/>
+                            <constraint firstItem="lqY-HW-4Wf" firstAttribute="top" secondItem="lxk-NS-qb9" secondAttribute="bottom" constant="16" id="nGZ-Yj-9Pa"/>
+                            <constraint firstItem="Uzw-B0-KjZ" firstAttribute="top" secondItem="lqY-HW-4Wf" secondAttribute="bottom" constant="16" id="qXF-tQ-JgD"/>
+                            <constraint firstItem="Tl0-h5-ouh" firstAttribute="bottom" secondItem="Uzw-B0-KjZ" secondAttribute="bottom" id="qlz-Gw-M1s"/>
+                            <constraint firstItem="lxk-NS-qb9" firstAttribute="leading" secondItem="Tl0-h5-ouh" secondAttribute="leading" constant="16" id="zgn-OG-j9b"/>
+                        </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <connections>
+                        <outlet property="categoryTableView" destination="Uzw-B0-KjZ" id="RYA-vR-UYj"/>
+                        <outlet property="randomRecipeView" destination="lqY-HW-4Wf" id="gV0-Ld-cRh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="142" y="118"/>
+            <point key="canvasLocation" x="140.57971014492756" y="117.39130434782609"/>
         </scene>
     </scenes>
     <resources>

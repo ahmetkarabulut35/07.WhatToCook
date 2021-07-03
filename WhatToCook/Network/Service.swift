@@ -10,8 +10,11 @@ import Foundation
 
 //www.themealdb.com/api/json/v1/1/random.php
 
+
+let service = Service()
+
 struct Service {
-    func getData<T:Decodable>(url: URL, completion: @escaping(T?) -> ()) -> T?{
+    func getJsonData<T:Decodable>(url: URL, completion: @escaping(T?) -> ()) -> T?{
         
         let dataReq = AF.request(url)
         dataReq.responseData { (data) in
@@ -23,5 +26,11 @@ struct Service {
         }
         
         return nil
+    }
+    
+    func getData(url: URL, completion: @escaping(Data?) -> ()) {
+        AF.request(url).responseData { (data) in
+            completion(data.data)
+        }
     }
 }
