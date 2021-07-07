@@ -13,7 +13,11 @@ class ImageWithTextView: UIView, NibLoadableView {
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var label: UILabel!
     
-    func initComponent(imageUrl: URL?, text: String?) {
+    var clickUrl: URL?
+    var tapAction: ((_ url: URL) -> ())?
+    
+    
+    func initComponent(imageUrl: URL?, text: String?, url: URL?, tapAction: ((_ url: URL) -> ())? = nil) {
         setupFromNib()
         
         if let url = imageUrl {
@@ -25,5 +29,19 @@ class ImageWithTextView: UIView, NibLoadableView {
         if let txt = text {
             label.text = txt
         }
+        
+        if url != nil && tapAction != nil  {
+            self.clickUrl = url
+            self.tapAction = tapAction
+            self.isUserInteractionEnabled = true
+            
+            let gesture = UITapGestureRecognizer(target: self, action: #selector(tapGesture))
+            self.addGestureRecognizer(gesture)
+        }
+    }
+    
+    @objc func tapGesture() {
+        tapAction?(clickUrl!)
+        print("testimgtexttap")
     }
 }

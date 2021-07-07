@@ -27,4 +27,11 @@ class BaseViewController: UIViewController {
             navBar.setItems([navItem], animated: true)
         }
     }
+    
+    func goToViewController(identifier: String, presentationStyle: UIModalPresentationStyle = .fullScreen) {
+        if let viewController = storyboard?.instantiateViewController(identifier: identifier) {
+            viewController.modalPresentationStyle = presentationStyle
+            present(viewController, animated: true)
+        }
+    }
 }

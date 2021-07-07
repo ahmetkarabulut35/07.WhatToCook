@@ -17,22 +17,53 @@ class CategoryTableViewCell: UITableViewCell {
 
     let identifier = "categoryTableViewCell"
     
-    @IBOutlet private weak var columnLeft: ImageWithTextView!
-    @IBOutlet private weak var columnCenter: ImageWithTextView!
-    @IBOutlet private weak var columnRight: ImageWithTextView!
+    var delegate: myTableDelegate?
+    
+    @IBOutlet weak var columnLeft: ImageWithTextView!
+    @IBOutlet weak var columnCenter: ImageWithTextView!
+    @IBOutlet weak var columnRight: ImageWithTextView!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        let leftColumnTapGestureRecognizer = UITapGestureRecognizer(target: self,
+                                                                    action: #selector(CategoryTableViewCell.cellClicked(sender:)))
+        columnLeft.addGestureRecognizer(leftColumnTapGestureRecognizer)
+        
+        let centerColumnTapGestureRecognizer = UITapGestureRecognizer(target: self,
+                                                                      action: #selector(CategoryTableViewCell.cellClicked(sender:)))
+        columnCenter.addGestureRecognizer(centerColumnTapGestureRecognizer)
+        
+        let rightCoLumnTapGestureRecognizer = UITapGestureRecognizer(target: self,
+                                                                     action: #selector(CategoryTableViewCell.cellClicked(sender:)))
+        columnRight.addGestureRecognizer(rightCoLumnTapGestureRecognizer)
+    }
+    
+    @objc func cellClicked(sender: UITapGestureRecognizer) {
+        guard let clickedView = sender.view as? ImageWithTextView else { return }
+        delegate?.myTableDelegate(clickedView)
+    }
     
     func initializeCell(model: TableViewRowModel) {
         if let categoryLeft = model.categoryLeft {
-            columnLeft.initComponent(imageUrl: categoryLeft.categoryThumb, text: categoryLeft.name)
+            columnLeft.initComponent(imageUrl: categoryLeft.categoryThumb,
+                                     text: categoryLeft.name,
+                                     url: categoryLeft.url)
         }
         
         if let categoryCenter = model.categoryCenter {
-            columnCenter.initComponent(imageUrl: categoryCenter.categoryThumb, text: categoryCenter.name)
+            columnCenter.initComponent(imageUrl: categoryCenter.categoryThumb,
+                                       text: categoryCenter.name,
+                                       url: categoryCenter.url)
         }
         
         if let categoryRight = model.categoryRight {
-            columnRight.initComponent(imageUrl: categoryRight.categoryThumb, text: categoryRight.name)
+            columnRight.initComponent(imageUrl: categoryRight.categoryThumb,
+                                      text: categoryRight.name,
+                                      url: categoryRight.url)
         }
     }
-    
+}
+
+protocol myTableDelegate {
+    func myTableDelegate(_ clickedView: ImageWithTextView)
 }

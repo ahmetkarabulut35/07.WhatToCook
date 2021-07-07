@@ -24,6 +24,8 @@
 		BE7312622688FC50001F7CE9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE7312602688FC50001F7CE9 /* Main.storyboard */; };
 		BE7312642688FC51001F7CE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE7312632688FC51001F7CE9 /* Assets.xcassets */; };
 		BE7E0290268B895B00340434 /* ServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7E028F268B895B00340434 /* ServiceHelper.swift */; };
+		BE865CAB26965C4000104F8A /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE865CAA26965C4000104F8A /* CategoryViewController.swift */; };
+		BE865CAE26965C5F00104F8A /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE865CAD26965C5F00104F8A /* RecipeViewController.swift */; };
 		BEBE72E8268A8AAE0098BE13 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBE72E7268A8AAE0098BE13 /* CategoryModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +51,8 @@
 		BE7312632688FC51001F7CE9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE7312682688FC51001F7CE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE7E028F268B895B00340434 /* ServiceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceHelper.swift; sourceTree = "<group>"; };
+		BE865CAA26965C4000104F8A /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		BE865CAD26965C5F00104F8A /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
 		BEBE72E7268A8AAE0098BE13 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -182,6 +186,8 @@
 				BE7312602688FC50001F7CE9 /* Main.storyboard */,
 				BE73125E2688FC50001F7CE9 /* MainPageViewController.swift */,
 				BE1C759B268B907700257F2B /* BaseViewController.swift */,
+				BE865CAA26965C4000104F8A /* CategoryViewController.swift */,
+				BE865CAD26965C5F00104F8A /* RecipeViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -329,6 +335,7 @@
 			files = (
 				BE25A8532689179600CDD313 /* MainPageViewModel.swift in Sources */,
 				BE25A84F268909CC00CDD313 /* MealModel.swift in Sources */,
+				BE865CAB26965C4000104F8A /* CategoryViewController.swift in Sources */,
 				BE1C7598268B8A9B00257F2B /* Constant.swift in Sources */,
 				BE73125F2688FC50001F7CE9 /* MainPageViewController.swift in Sources */,
 				BE25A8492688FFB300CDD313 /* Service.swift in Sources */,
@@ -340,6 +347,7 @@
 				BE7E0290268B895B00340434 /* ServiceHelper.swift in Sources */,
 				BE26B697268D08D000C315F5 /* NibLoadable.swift in Sources */,
 				BE26B692268CFF3E00C315F5 /* CategoryTableViewCell.swift in Sources */,
+				BE865CAE26965C5F00104F8A /* RecipeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

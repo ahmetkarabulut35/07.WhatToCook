@@ -48,4 +48,5 @@ struct CategoryModel {
     var id: Int
     var name: String
     var categoryThumb: URL?
+    var url: URL?
 }

@@ -24,16 +24,25 @@ class MainPageViewController: BaseViewController {
         categoryTableView.delegate = self
         categoryTableView.dataSource = self
         
-        getCategories()
         getRandomRecipe()
-        
+        getCategories()
         
     }
     
     func getRandomRecipe() {
         viewModel.getRandomMeal { [weak self] (recipe) in
             if let randomRecipe = recipe {
-                self?.randomRecipeView.initComponent(imageUrl: randomRecipe.thumb, text: randomRecipe.name)
+                
+                self?.randomRecipeView.initComponent(imageUrl: randomRecipe.thumb,
+                                                     text: randomRecipe.name,
+                                                     url: randomRecipe.id > 0 ?
+                                                        URL(string: constant.recipeIdUrl + String(randomRecipe.id)) :
+                                                        nil,
+                                                     tapAction: { (url) in
+                                                        self?.goToViewController(identifier: "RecipeViewController",
+                                                                                 presentationStyle: .popover)
+                                                     }
+                )
             }
         }
     }
@@ -48,7 +57,7 @@ class MainPageViewController: BaseViewController {
     }
 }
 
-extension MainPageViewController: UITableViewDelegate, UITableViewDataSource {
+extension MainPageViewController: UITableViewDelegate, UITableViewDataSource, myTableDelegate, UIGestureRecognizerDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         let rowCount = Double(categories.count / categoryColumnCount).rounded(.up)
@@ -57,6 +66,9 @@ extension MainPageViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CategoryTableViewCell().identifier, for: indexPath) as! CategoryTableViewCell
+        
+        cell.delegate = self
+        cell.isUserInteractionEnabled = true
         
         let firstColumnIndex = indexPath.row * categoryColumnCount
         
@@ -71,6 +83,10 @@ extension MainPageViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    @objc func myTableDelegate(_ tappedView: ImageWithTextView) {
+        goToViewController(identifier: "CategoryViewController", presentationStyle: .popover)
+    }
+    
     func getCategory(index: Int) -> CategoryModel? {
         if categories.count >= index {
             return categories[index]
@@ -78,6 +94,5 @@ extension MainPageViewController: UITableViewDelegate, UITableViewDataSource {
         
         return nil
     }
-    
 }
 
