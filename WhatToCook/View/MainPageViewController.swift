@@ -18,7 +18,7 @@ class MainPageViewController: BaseViewController {
     var categories = [CategoryModel]()
     
     override func viewDidLoad() {
-        super.viewDidLoad(title: constant.appName, buttonClickFunction: nil)
+        super.viewDidLoad()
         
         categoryTableView.register(UINib(nibName: "CategoryTableViewCell", bundle: nil), forCellReuseIdentifier: CategoryTableViewCell().identifier)
         categoryTableView.delegate = self
@@ -30,7 +30,7 @@ class MainPageViewController: BaseViewController {
     }
     
     func getRandomRecipe() {
-        viewModel.getRandomMeal { [weak self] (recipe) in
+        viewModel.getRandomRecipe { [weak self] (recipe) in
             if let randomRecipe = recipe {
                 
                 self?.randomRecipeView.initComponent(imageUrl: randomRecipe.thumb,
@@ -38,9 +38,15 @@ class MainPageViewController: BaseViewController {
                                                      url: randomRecipe.id > 0 ?
                                                         URL(string: constant.recipeIdUrl + String(randomRecipe.id)) :
                                                         nil,
+                                                     id: String(randomRecipe.id),
                                                      tapAction: { (url) in
-                                                        self?.goToViewController(identifier: "RecipeViewController",
-                                                                                 presentationStyle: .popover)
+                                                        
+                                                        if let vc = self?.storyboard?.instantiateViewController(identifier: "RecipeViewController") as? RecipeViewController {
+                                                            vc.recipeId = String(randomRecipe.id)
+                                                            vc.getRecipe()
+                                                            self?.goToViewController(viewController: vc)
+                                                        }
+                                                        
                                                      }
                 )
             }

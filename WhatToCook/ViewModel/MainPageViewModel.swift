@@ -9,7 +9,7 @@ import Foundation
 
 struct MainPageViewModel {
         
-    func getRandomMeal(completion: @escaping(Recipe?) -> ()) {
+    func getRandomRecipe(completion: @escaping(Recipe?) -> ()) {
         serviceHelper.getMeals(url: constant.randomRecipeUrl, service: service) { (recipes) in
             if recipes.count > 0 {
                 completion(recipes.first)

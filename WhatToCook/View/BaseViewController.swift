@@ -9,29 +9,41 @@ import UIKit
 
 class BaseViewController: UIViewController {
 
-    override func viewDidLoad() {
+    func viewDidLoad(addBackButton: Bool = false, buttonClickFunction: Selector? = nil) {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        configureNavbar(title: constant.appName, addBackButton: addBackButton)
     }
     
-    func viewDidLoad(title: String, buttonClickFunction: Selector?) {
-        super.viewDidLoad()
+    func configureNavbar(title: String, addBackButton: Bool = false) {
         if let navBar = view?.subviews.filter({$0 is UINavigationBar}).first as? UINavigationBar {
             let navItem = UINavigationItem(title: title)
             
-            if let buttonAction = buttonClickFunction {
-                let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: buttonAction)
-                //let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(objCFunction(nonObjCfunc: buttonAction)))
-                navItem.rightBarButtonItem = doneItem
+            if addBackButton {
+                let backItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(dismissView))
+                backItem.title = "Back"
+                navItem.leftBarButtonItem = backItem
             }
             navBar.setItems([navItem], animated: true)
         }
     }
     
-    func goToViewController(identifier: String, presentationStyle: UIModalPresentationStyle = .fullScreen) {
-        if let viewController = storyboard?.instantiateViewController(identifier: identifier) {
-            viewController.modalPresentationStyle = presentationStyle
-            present(viewController, animated: true)
+    @objc func dismissView()
+    {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func goToViewController(identifier: String? = nil, viewController: UIViewController? = nil, presentationStyle: UIModalPresentationStyle = .fullScreen) {
+        var vc = UIViewController()
+        if viewController != nil {
+            vc = viewController!
         }
+        else if identifier != nil {
+            if let viewControl = storyboard?.instantiateViewController(identifier: identifier!)  {
+                vc = viewControl
+            }
+        }
+        
+        vc.modalPresentationStyle = presentationStyle
+        present(vc, animated: true)
     }
 }

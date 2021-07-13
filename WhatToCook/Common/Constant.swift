@@ -16,6 +16,7 @@ struct Constant {
     lazy var randomRecipeUrl = baseRecipeApiUrl + "random.php"
     lazy var categoriesUrl = baseRecipeApiUrl + "categories.php"
     lazy var recipeIdUrl = baseRecipeApiUrl + "lookup.php?i="
+    lazy var areaRecipeSearchUrl = baseRecipeApiUrl + "filter.php?a="
     lazy var categoryUrl = baseRecipeApiUrl + "filter.php?c="
     lazy var searchUrl = baseRecipeApiUrl + "search.php?s="
 }

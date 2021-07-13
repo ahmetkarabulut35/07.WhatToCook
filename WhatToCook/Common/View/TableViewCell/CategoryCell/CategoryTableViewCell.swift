@@ -47,19 +47,22 @@ class CategoryTableViewCell: UITableViewCell {
         if let categoryLeft = model.categoryLeft {
             columnLeft.initComponent(imageUrl: categoryLeft.categoryThumb,
                                      text: categoryLeft.name,
-                                     url: categoryLeft.url)
+                                     url: categoryLeft.url,
+                                     id: String(categoryLeft.id))
         }
         
         if let categoryCenter = model.categoryCenter {
             columnCenter.initComponent(imageUrl: categoryCenter.categoryThumb,
                                        text: categoryCenter.name,
-                                       url: categoryCenter.url)
+                                       url: categoryCenter.url,
+                                       id: String(categoryCenter.id))
         }
         
         if let categoryRight = model.categoryRight {
             columnRight.initComponent(imageUrl: categoryRight.categoryThumb,
                                       text: categoryRight.name,
-                                      url: categoryRight.url)
+                                      url: categoryRight.url,
+                                      id: String(categoryRight.id))
         }
     }
 }

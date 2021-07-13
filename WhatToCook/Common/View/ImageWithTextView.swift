@@ -14,10 +14,11 @@ class ImageWithTextView: UIView, NibLoadableView {
     @IBOutlet private weak var label: UILabel!
     
     var clickUrl: URL?
+    var id: String?
     var tapAction: ((_ url: URL) -> ())?
     
     
-    func initComponent(imageUrl: URL?, text: String?, url: URL?, tapAction: ((_ url: URL) -> ())? = nil) {
+    func initComponent(imageUrl: URL?, text: String?, url: URL?, id: String, tapAction: ((_ url: URL) -> ())? = nil) {
         setupFromNib()
         
         if let url = imageUrl {
@@ -25,6 +26,8 @@ class ImageWithTextView: UIView, NibLoadableView {
                 self.imageView.image = image
             }
         }
+        
+        self.id = id
         
         if let txt = text {
             label.text = txt
