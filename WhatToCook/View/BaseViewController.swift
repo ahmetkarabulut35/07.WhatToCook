@@ -14,6 +14,11 @@ class BaseViewController: UIViewController {
         configureNavbar(title: constant.appName, addBackButton: addBackButton)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureNavbar(title: constant.appName, addBackButton: false)
+    }
+    
     func configureNavbar(title: String, addBackButton: Bool = false) {
         if let navBar = view?.subviews.filter({$0 is UINavigationBar}).first as? UINavigationBar {
             let navItem = UINavigationItem(title: title)

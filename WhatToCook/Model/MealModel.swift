@@ -23,15 +23,12 @@ struct Meal: Codable {
     let strMeasure11, strMeasure12, strMeasure13, strMeasure14, strMeasure15, strMeasure16, strMeasure17, strMeasure18, strMeasure19, strMeasure20: String?
     
     public func convertMealToRecipe() -> Recipe {
-        var id = 0
-        var name, category, area, instructions:String
+        var id, name, category, area, instructions:String
         var thumb, youtube: URL?
         var tags = [String]()
         var ingredients = [Ingredient]()
         
-        if let idStr = idMeal, let idInt = Int(idStr) {
-            id = idInt
-        }
+        id = idMeal ?? ""
         name = strMeal ?? ""
         category = strCategory ?? ""
         area = strArea ?? ""
@@ -49,7 +46,8 @@ struct Meal: Codable {
             ingredients.append(Ingredient(name: ing, measure: mea))
         }
         
-        return Recipe(id: id, name: name, category: category, area: area, instructions: instructions, thumb: thumb, tags: tags, youtube: youtube, ingredients: ingredients)
+        return Recipe(id: id, name: name, thumb: thumb, category: category, area: area, instructions: instructions, tags: tags, youtube: youtube, ingredients: ingredients)
+        
     }
 }
 
@@ -67,16 +65,27 @@ struct Meals: Codable {
     }
 }
 
-struct Recipe {
-    var id: Int
-    var name: String
+class Recipe : BaseModel {
     var category: String
     var area: String
     var instructions: String
-    var thumb: URL?
     var tags: [String]
     var youtube: URL?
-    var ingredients : [Ingredient]
+    var ingredients : [Ingredient]?
+    
+    init(id: String = "", name: String = "", thumb: URL? = nil, category: String = "", area: String = "", instructions: String = "", tags: [String] = [], youtube: URL? = nil, ingredients: [Ingredient]? = nil) {
+        self.category = category
+        self.area = area
+        self.instructions = instructions
+        self.tags = tags
+        self.youtube = youtube
+        self.ingredients = ingredients
+        
+        super.init()
+        self.id = id
+        self.name = name
+        self.thumb = thumb
+    }
 }
 
 struct Ingredient{

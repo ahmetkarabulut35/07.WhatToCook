@@ -18,7 +18,7 @@ class RecipeCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         let leftColumnTapGestureRecognizer = UITapGestureRecognizer(target: self,
-                                                                    action: #selector(CategoryTableViewCell.cellClicked(sender:)))
+                                                                    action: #selector(ThreeColumnTableViewCell.cellClicked(sender:)))
         cell.addGestureRecognizer(leftColumnTapGestureRecognizer)
         
         

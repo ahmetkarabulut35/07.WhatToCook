@@ -18,7 +18,7 @@ class ImageWithTextView: UIView, NibLoadableView {
     var tapAction: ((_ url: URL) -> ())?
     
     
-    func initComponent(imageUrl: URL?, text: String?, url: URL?, id: String, tapAction: ((_ url: URL) -> ())? = nil) {
+    func initComponent(imageUrl: URL?, text: String?, url: URL? = nil, id: String, tapAction: ((_ url: URL) -> ())? = nil) {
         setupFromNib()
         
         if let url = imageUrl {

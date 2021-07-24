@@ -11,6 +11,7 @@ class MainPageViewController: BaseViewController {
         
     @IBOutlet weak var randomRecipeView: ImageWithTextView!
     @IBOutlet weak var categoryTableView: UITableView!
+    @IBOutlet weak var searchBarTextField: UITextField!
     
     private let viewModel = MainPageViewModel()
     private let categoryColumnCount = 3
@@ -20,7 +21,7 @@ class MainPageViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        categoryTableView.register(UINib(nibName: "CategoryTableViewCell", bundle: nil), forCellReuseIdentifier: CategoryTableViewCell().identifier)
+        categoryTableView.register(UINib(nibName: "ThreeColumnTableViewCell", bundle: nil), forCellReuseIdentifier: ThreeColumnTableViewCell().identifier)
         categoryTableView.delegate = self
         categoryTableView.dataSource = self
         
@@ -29,13 +30,21 @@ class MainPageViewController: BaseViewController {
         
     }
     
+    @IBAction func searchButtonClick(_ sender: Any) {
+        if let searchText = searchBarTextField.text {
+            viewModel.searchRecipes(text: searchText) { (recipes) in
+                print(recipes)
+            }
+        }
+    }
+    
     func getRandomRecipe() {
         viewModel.getRandomRecipe { [weak self] (recipe) in
             if let randomRecipe = recipe {
                 
                 self?.randomRecipeView.initComponent(imageUrl: randomRecipe.thumb,
                                                      text: randomRecipe.name,
-                                                     url: randomRecipe.id > 0 ?
+                                                     url: randomRecipe.id != "" ?
                                                         URL(string: constant.recipeIdUrl + String(randomRecipe.id)) :
                                                         nil,
                                                      id: String(randomRecipe.id),
@@ -71,7 +80,7 @@ extension MainPageViewController: UITableViewDelegate, UITableViewDataSource, my
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CategoryTableViewCell().identifier, for: indexPath) as! CategoryTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: ThreeColumnTableViewCell().identifier, for: indexPath) as! ThreeColumnTableViewCell
         
         cell.delegate = self
         cell.isUserInteractionEnabled = true
@@ -82,15 +91,20 @@ extension MainPageViewController: UITableViewDelegate, UITableViewDataSource, my
         let catCenter = getCategory(index: firstColumnIndex + 1)
         let catRight = getCategory(index: firstColumnIndex + 2)
         
-        cell.initializeCell(model: TableViewRowModel(categoryLeft: catLeft,
-                                                    categoryCenter: catCenter,
-                                                    categoryRight: catRight))
-        
+        cell.initializeCell(model: BaseModelTableViewRowModel(columnLeft: catLeft,
+                                                              columnCenter: catCenter,
+                                                              columnRight: catRight))
         return cell
     }
     
     @objc func myTableDelegate(_ tappedView: ImageWithTextView) {
-        goToViewController(identifier: "CategoryViewController", presentationStyle: .popover)
+        
+        
+        if let vc = self.storyboard?.instantiateViewController(identifier: "CategoryViewController") as? CategoryViewController {
+            vc.categoryId = tappedView.id
+            vc.getCategory()
+            self.goToViewController(viewController: vc)
+        }
     }
     
     func getCategory(index: Int) -> CategoryModel? {

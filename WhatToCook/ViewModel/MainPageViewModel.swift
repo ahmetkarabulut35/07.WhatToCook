@@ -22,4 +22,12 @@ struct MainPageViewModel {
             completion(categories)
         }
     }
+    
+    func searchRecipes(text: String, completion: @escaping([Recipe]) -> ()) {
+        serviceHelper.getMeals(url: constant.searchUrl + text, service: service) { (recipes) in
+            if recipes.count > 0 {
+                completion(recipes)
+            }
+        }
+    }
 }

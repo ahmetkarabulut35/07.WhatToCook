@@ -9,7 +9,7 @@ import UIKit
 
 class RecipeViewController: BaseViewController {
 
-    var recipeId:String?
+    var recipeId: String?
     
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var imageViewThumbnail: UIImageView!

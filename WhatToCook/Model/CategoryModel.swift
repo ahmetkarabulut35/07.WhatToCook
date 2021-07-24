@@ -27,26 +27,20 @@ struct Category: Codable {
     let strCategoryThumb: String?
     
     func convertCategoryJsonToCategory() -> CategoryModel {
-        var id = 0
+        var id: String
         var name: String
         var thumb: URL?
         
-        if let idStr = idCategory, let idInt = Int(idStr) {
-            id = idInt
-        }
-        name = strCategory ?? ""
+        id = strCategory ?? ""
+        name = id
         if let stringThumbUrl = strCategoryThumb, let thumbUrl = URL(string: stringThumbUrl){
             thumb = thumbUrl
         }
         
-        return CategoryModel(id: id, name: name, categoryThumb: thumb)
-        
+        return CategoryModel(id: id, name: name, thumb: thumb)
     }
 }
 
-struct CategoryModel {
-    var id: Int
-    var name: String
-    var categoryThumb: URL?
-    var url: URL?
+class CategoryModel: BaseModel {
+    
 }
