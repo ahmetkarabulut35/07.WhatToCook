@@ -39,7 +39,7 @@ struct Meal: Codable {
         if let stringTags = strTags {
             tags = stringTags.components(separatedBy: ",")
         }
-        if let stringYoutubeUrl = strMealThumb, let youtubeUrl = URL(string: stringYoutubeUrl){
+        if let stringYoutubeUrl = strYoutube, let youtubeUrl = URL(string: stringYoutubeUrl){
             youtube = youtubeUrl
         }
         if let ing = strIngredient1, let mea = strMeasure1 {

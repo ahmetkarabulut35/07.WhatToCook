@@ -152,6 +152,13 @@
                                             <constraint firstAttribute="height" constant="200" id="jWu-iS-0cY"/>
                                         </constraints>
                                     </imageView>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Umd-yI-Jpn" userLabel="YTPlayer" customClass="YTPlayerView">
+                                        <rect key="frame" x="0.0" y="291.66666666666669" width="382" height="200"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="BEb-eJ-bjE"/>
+                                        </constraints>
+                                    </view>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1qh-9a-e0W">
                                         <rect key="frame" x="0.0" y="299.66666666666669" width="382" height="209.33333333333331"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -202,6 +209,7 @@
                         <outlet property="collectionViewSimilarRecipes" destination="d0r-eK-njv" id="lmf-bS-xqj"/>
                         <outlet property="imageViewThumbnail" destination="5Bs-UM-YFk" id="rJ6-rS-yEQ"/>
                         <outlet property="labelTitle" destination="fsH-cH-ek0" id="cqL-LP-XQy"/>
+                        <outlet property="playerView" destination="Umd-yI-Jpn" id="OLZ-kb-XEr"/>
                         <outlet property="textViewDescription" destination="1qh-9a-e0W" id="Xq0-Sq-Upv"/>
                     </connections>
                 </viewController>

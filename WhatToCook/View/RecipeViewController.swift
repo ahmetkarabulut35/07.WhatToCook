@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import youtube_ios_player_helper
 
 class RecipeViewController: BaseViewController {
 
@@ -15,6 +16,8 @@ class RecipeViewController: BaseViewController {
     @IBOutlet weak var imageViewThumbnail: UIImageView!
     @IBOutlet weak var textViewDescription: UITextView!
     @IBOutlet weak var collectionViewSimilarRecipes: UICollectionView!
+    
+    @IBOutlet var playerView: YTPlayerView!
     
     private let viewModel = RecipeViewModel()
     var similarRecipes = [Recipe]()
@@ -41,14 +44,22 @@ class RecipeViewController: BaseViewController {
                 if let recipeName = recipeModel?.name {
                     self?.labelTitle.text = recipeName
                 }
-                self?.viewModel.getImage(url: recipeModel?.thumb) { (image) in
-                    self?.imageViewThumbnail.image = image
-                }
                 self?.textViewDescription.text = recipeModel?.instructions
                 if let area = recipeModel?.area {
                     self?.getSimilarRecipes(area: area)
                 }
                 
+                if let youtubeUrl = recipeModel?.youtube, let youtubeId = youtubeUrl.absoluteString.youtubeId {
+                    self?.imageViewThumbnail.isHidden = true
+                    self?.playerView.isHidden = false
+                    
+                    self?.playerView.load(withVideoId: youtubeId)
+                }
+                else {
+                    self?.viewModel.getImage(url: recipeModel?.thumb) { (image) in
+                        self?.imageViewThumbnail.image = image
+                    }
+                }
             }
         }
         else {

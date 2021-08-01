@@ -10,3 +10,4 @@ target 'WhatToCook' do
 end
 
 pod 'Alamofire', '~> 5.4'
+pod 'youtube-ios-player-helper'
