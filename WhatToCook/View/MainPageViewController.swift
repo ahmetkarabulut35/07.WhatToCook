@@ -33,7 +33,10 @@ class MainPageViewController: BaseViewController {
     @IBAction func searchButtonClick(_ sender: Any) {
         if let searchText = searchBarTextField.text {
             viewModel.searchRecipes(text: searchText) { (recipes) in
-                print(recipes)
+                if let vc = self.storyboard?.instantiateViewController(identifier: "CategoryViewController") as? CategoryViewController {
+                    vc.recipeSearchResults(recipes: recipes)
+                    self.goToViewController(viewController: vc)
+                }
             }
         }
     }
@@ -98,8 +101,6 @@ extension MainPageViewController: UITableViewDelegate, UITableViewDataSource, my
     }
     
     @objc func myTableDelegate(_ tappedView: ImageWithTextView) {
-        
-        
         if let vc = self.storyboard?.instantiateViewController(identifier: "CategoryViewController") as? CategoryViewController {
             vc.categoryId = tappedView.id
             vc.getCategory()

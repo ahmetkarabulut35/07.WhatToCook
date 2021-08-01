@@ -36,6 +36,10 @@ class CategoryViewController: BaseViewController {
             //TODO: return back show error
         }
     }
+    
+    func recipeSearchResults(recipes:[Recipe]) {
+        self.recipes = recipes
+    }
 }
 
 extension CategoryViewController: UITableViewDelegate, UITableViewDataSource, myTableDelegate, UIGestureRecognizerDelegate {
@@ -72,7 +76,7 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource, my
         
         
         if let vc = self.storyboard?.instantiateViewController(identifier: "RecipeViewController") as? RecipeViewController {
-            vc.recipeId = tappedView.id
+            vc.recipeId =  tappedView.id
             vc.getRecipe()
             self.goToViewController(viewController: vc)
         }
